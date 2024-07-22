@@ -4,7 +4,7 @@ const resetBtn = document.querySelector(".reset");
 const display = document.querySelector("h2");
 const alarmSound = document.querySelector("audio");
 
-const minute = 1;
+const minute = 25;
 const seconds = 60;
 
 let totalTime = minute * seconds;
