@@ -1,5 +1,5 @@
 const startBtn = document.querySelector(".start");
-const stoptBtn = document.querySelector(".stop");
+const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
 const display = document.querySelector("h2");
 
@@ -15,13 +15,29 @@ function timeRemaining() {
   display.textContent = `${minutes}:${seconds}`;
 
   //zaman dolduysa
-  if (totalTime == 0) {
-    clearTimeout(resetTime);
-    display.textContent("Zaman Doldu!");
+  if (totalTime <= 0) {
+    clearInterval(interval);
+    display.textContent = "Zaman Doldu!";
   }
 }
 
-const resetTime = setInterval(() => {
-  totalTime--;
+function startTimer() {
+  interval = setInterval(() => {
+    timeRemaining();
+    totalTime--;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval);
+}
+
+function resetTimer() {
+  clearInterval(interval);
+  totalTime = 1500;
   timeRemaining();
-}, 1000);
+}
+
+startBtn.addEventListener("click", startTimer);
+stopBtn.addEventListener("click", stopTimer);
+resetBtn.addEventListener("click", resetTimer);
